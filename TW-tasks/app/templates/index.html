@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TeamWork - Tareas</title>
+
+    <!-- ICONOS (NECESARIO) -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <!-- FUENTE -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ESTILOS (CORREGIDO: usar /public/) -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+
+  <body>
+    <header class="tw-header">
+      <div class="tw-container header-row">
+        <div class="logo">TeamWork</div>
+        <nav class="header-nav">
+          <a href="/" class="btn ghost back-btn">
+            <span class="material-icons">arrow_back</span> Volver
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="tw-container main-card">
+      <div class="tasks-top">
+        <div>
+          <h1>Tareas</h1>
+          <p class="lead">
+            Gestión simple de tareas — almacenamiento en memoria
+          </p>
+        </div>
+      </div>
+
+      <div class="tasks-grid">
+        <section class="tasks-left">
+          <div class="panel">
+            <h2 class="panel-title">Mis tareas</h2>
+
+            <form id="taskForm" class="task-form-inline">
+              <input id="title" placeholder="Título" required />
+              <input id="description" placeholder="Descripción (opcional)" />
+              <button class="btn primary" type="submit">Agregar</button>
+            </form>
+
+            <ul id="tasks" class="task-list"></ul>
+          </div>
+        </section>
+
+        <aside class="tasks-right">
+          <div class="panel">
+            <h3>Microfrontend en desarrollo</h3>
+            <p>Gestión de tareas y proyectos</p>
+            <p class="info-text">
+              Este microfrontend es parte de la plataforma TeamWork. Puedes
+              usarlo para guardar tareas en memoria durante la sesión.
+            </p>
+
+            <div class="dev-info">
+              <h4>Información para desarrolladores:</h4>
+              <ul>
+                <li>Nombre del servicio: <code>tasks</code></li>
+                <li>Endpoint: <code>http://tw-tasks-service:8084</code></li>
+                <li>
+                  El servicio expone una ruta <code>/</code> con la interfaz
+                  HTML
+                </li>
+                <li>Usa <code>window.microfrontendBus</code> para eventos</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="tw-footer">
+      <div class="tw-container">&copy; 2025 TeamWork</div>
+    </footer>
+
+    <div id="editModal" class="modal" aria-hidden="true" style="display: none">
+      <div class="modal-backdrop"></div>
+      <div
+        class="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="editModalTitle"
+      >
+        <h3 id="editModalTitle">Editar tarea</h3>
+
+        <div class="modal-body">
+          <label for="editTitle">Título</label>
+          <input id="editTitle" type="text" />
+
+          <label for="editDescription" style="margin-top: 8px; display: block"
+            >Descripción (opcional)</label
+          >
+          <input id="editDescription" type="text" />
+        </div>
+
+        <div class="modal-actions" style="margin-top: 12px">
+          <button id="saveEdit" class="btn primary">Guardar</button>
+          <button id="cancelEdit" class="btn ghost">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPT (CORREGIDO: usar /public/) -->
+    <script src="/static/js/tasks.js"></script>
+  </body>
+</html>

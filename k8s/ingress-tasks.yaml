@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tw-tasks-ingress
+  annotations:
+    # Usaremos la anotación antigua para compatibilidad con tu cluster
+    kubernetes.io/ingress.class: nginx
+    # CLAVE: Usa la reescritura /$2 para preservar la subruta estática.
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: teamwork.local
+      http:
+        paths:
+          # Usamos la expresión regular /tasks(/|$)(.*)
+          - path: /tasks(/|$)(.*)
+            # 💥 CORRECCIÓN: Usamos ImplementationSpecific para permitir Regex.
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tw-tasks-service
+                # Puerto de contenedor de Node.js (8084).
+                port:
+                  number: 8084
